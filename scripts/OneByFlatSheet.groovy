@@ -13,11 +13,16 @@ CSG getNut(){
 
 	double thickness = 0.8
 	double side = 12.5
+
+	double nunRad = ((side/Math.sqrt(3)))
+	CSG head =new Cylinder(nunRad,nunRad,thickness,(int)8).toCSG() 
+				.rotz(45/2)
   
    	CSG sheet = new Cube(	side,// X dimention
 			side,// Y dimention
 			thickness//  Z dimention
 			).toCSG()// this converts from the geometry to an object we can work with
+			.intersect(head)
 	CSG hole = new Cube(	4.7,// X dimention
 			4.7,// Y dimention
 			thickness*2//  Z dimention
