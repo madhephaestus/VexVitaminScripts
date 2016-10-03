@@ -14,7 +14,7 @@ CSG getNut(){
 	double thickness = 0.8
 	double side = 12.5
 
-	double nunRad = ((side/Math.sqrt(3)))
+	double nunRad = ((side/3)/(2*Math.sin(Math.PI/8)))*3/2
 	CSG head =new Cylinder(nunRad,nunRad,thickness,(int)8).toCSG() 
 				.rotz(45/2)
   
@@ -40,7 +40,7 @@ CSG getNut(){
   				)
   		}
   	}
-  	
+  	outputSheet = outputSheet.union(new Cube(side).toCSG())
 	return outputSheet
 		.setParameter(size)
 		.setRegenerate({getNut()})
