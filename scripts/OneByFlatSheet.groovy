@@ -40,7 +40,7 @@ CSG getNut(){
   				)
   		}
   	}
-  	outputSheet = outputSheet.union(new Cube(side).toCSG())
+  	//outputSheet = outputSheet.union(new Cube(side).toCSG())
 	return outputSheet
 		.setParameter(size)
 		.setRegenerate({getNut()})
