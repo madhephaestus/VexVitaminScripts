@@ -27,10 +27,15 @@ CSG getNut(){
 			4.7,// Y dimention
 			thickness*2//  Z dimention
 			).toCSG()// this converts from the geometry to an object we can work with
+	
+	CSG midhole = new Cube( 4.7,4.7,thickness*2).toCSG()
+	
 			
   	CSG stub = sheet.difference(hole)
   	CSG outputSheet = stub.clone()
-  	for (int i=0;i< vexSheetConfig.x;i++){
+  	if (vexSheetConfig.x == 5)
+	{
+	for (int i=0;i< vexSheetConfig.x;i++){
   		for (int j=0;j<vexSheetConfig.y;j++){
   			outputSheet = outputSheet.union(
   					stub
@@ -40,6 +45,21 @@ CSG getNut(){
   				)
   		}
   	}
+	}
+	else
+	{
+		for (int i=0;i< vexSheetConfig.x;i++){
+			for (int j=0;j<vexSheetConfig.y;j++) {
+				outputSheet = outputSheet.union(
+					stub
+  						.movex(i*side)
+  						.movey(j*side)
+					}
+					}
+		for (int i=0;i<vexSheetConfig.x;i++){	
+			outputSheet.difference 
+			
+			
   	//outputSheet = outputSheet.union(new Cube(side).toCSG())
 	return outputSheet
 		.setParameter(size)
