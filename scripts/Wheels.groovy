@@ -21,7 +21,16 @@ CSG getWheel(){
                        		(vexWheelConfig.totalHeight), // Height
                        		(int)40 //resolution
                        		).toCSG()//convert to CSG to display  
-
+      //does this is the wheel is "round" at the edge
+      if(roundEdge){
+      	CSG tempBody = mainBody.movex(vexWheelConfig.diameter)
+      	CSG subtractSphere = new Sphere((vexWheelConfig.diameter)/2)
+      								.toCSG()
+      								.movex(vexWheelConfig.diameter)
+      	tempBody = tempBody.difference(subtractSphere)
+      	mainBody = mainBody.difference(tempBody.movex(-vexWheelConfig.diameter);
+      }
+     
      return mainBody
 		.setParameter(size)
 		.setRegenerate({getWheel()})
