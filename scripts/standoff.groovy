@@ -9,12 +9,13 @@ CSG getStandoff(){
 										args.get(0),
 										Vitamins.listVitaminSizes(type))
                     
-	double length = Vitamins.getConfiguration( type,length.getStrValue())
+	HashMap<String, Object> vexStandoffConfig = Vitamins.getConfiguration(type, size.getStrValue())
+	double length = vexStandoffConfig.length
 	double width = 6.35
-  double diameter = 4.15
+  double diameter = 3.75
   
-  CSG standoff = new Cylinder(width, width, length, (int)6).toCSG()
-  CSG hole = new Cylinder(diameter, diameter, length, (int)30).toCSG()
+  CSG standoff = new Cylinder(width/2, width/2, length, (int)6).toCSG()
+  CSG hole = new Cylinder(diameter/2, diameter/2, length, (int)30).toCSG()
   standoff = standoff.difference(hole)
 
   return standoff
