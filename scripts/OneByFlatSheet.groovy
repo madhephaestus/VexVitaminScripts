@@ -30,8 +30,8 @@ CSG getNut(){
 			
   	CSG stub = sheet.difference(hole)
   	CSG outputSheet = stub.clone()
-  	for (int i=0;i< vexSheetConfig.x;i++){
-  		for (int j=0;j<vexSheetConfig.y;j++){
+  	for (int i=0;i< vexSheetConfig.y;i++){
+  		for (int j=0;j<vexSheetConfig.x;j++){
   			outputSheet = outputSheet.union(
   					stub
   						.movex(i*side)
