@@ -13,21 +13,10 @@ CSG getGear(){
 	HashMap<String,Object> vexGearConfig = Vitamins.getConfiguration( type,size.getStrValue())
 
 	CSG round = new Cylinder(vexGearConfig.diameter/2, vexGearConfig.diameter/2, vexGearConfig.height, (int)30).toCSG()
+
+	CSG tooth = new Cylinder(10, 5, 10, (int)3).toCSG()
 	
-  	/*CSG stub = sheet.difference(hole)
-  	CSG outputSheet = stub.clone()
-  	for (int i=0;i< vexSheetConfig.x;i++){
-  		for (int j=0;j<vexSheetConfig.y;j++){
-  			outputSheet = outputSheet.union(
-  					stub
-  						.movex(i*side)
-  						.movey(j*side)
-  					
-  				)
-  		}
-  	}*/
-  	//outputSheet = outputSheet.union(new Cube(side).toCSG())
-	return round
+	return tooth
 		.setParameter(size)
 		.setRegenerate({getGear()})
 }
