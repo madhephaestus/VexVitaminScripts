@@ -12,11 +12,16 @@ CSG getGear(){
 	//println "Database loaded "+database
 	HashMap<String,Object> vexGearConfig = Vitamins.getConfiguration( type,size.getStrValue())
 
-	CSG round = new Cylinder(vexGearConfig.diameter/2, vexGearConfig.diameter/2, vexGearConfig.height, (int)30).toCSG()
-
-	CSG tooth = new Cylinder(10, 5, 10, (int)3).toCSG()
+	double diameter = vexGearConfig.diameter
+	double height = vexGearConfig.height
 	
-	return tooth
+	CSG round = new Cylinder(vexGearConfig.diameter/2, vexGearConfig.diameter/2, vexGearConfig.height, (int)84).toCSG()
+
+	CSG tooth = new Cube(10, 10, vexGearConfig.height).toCSG().movez(height/2)
+	tooth = tooth.difference(new Cube(7, 15, 10).toCSG().rotz(-20).movex(-5).movez(height/2)).difference(new Cube(7, 15, 10).toCSG().rotz(20).movex(5).movez(height/2)).movey(-diameter/2-4)
+	round = round.union(tooth)
+	
+	return round
 		.setParameter(size)
 		.setRegenerate({getGear()})
 }
