@@ -26,9 +26,13 @@ CSG getWheel(){
       	CSG tempBody = mainBody.movex(vexWheelConfig.diameter)
       	CSG subtractSphere = new Sphere((vexWheelConfig.diameter)/2)
       								.toCSG()
-      								.movex(vexWheelConfig.diameter)
+      	subtractSphere = subtractSphere.rotx(90)
+      							 .movex(vexWheelConfig.diameter)
+      							 .movez(vexWheelConfig.totalHeight/2)
       	tempBody = tempBody.difference(subtractSphere)
-      	mainBody = mainBody.difference(tempBody.movex(-vexWheelConfig.diameter);
+      	
+      	tempBody = tempBody.difference(subtractSphere)
+      	mainBody = mainBody.difference(tempBody.movex(-vexWheelConfig.diameter))
       }
      
      return mainBody
