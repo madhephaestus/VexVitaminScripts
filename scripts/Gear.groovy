@@ -17,16 +17,14 @@ CSG getGear() {
 	double numTeeth = vexGearConfig.numTeeth
 	double toothLen = vexGearConfig.toothLen
 
-	CSG roundDepthBottom = new Cylinder(0, 0, 0).toCSG()
-	CSG roundDepthTop = new Cylinder(0, 0, 0).toCSG()
-	if (!(size.getStrValue() == "HS12T" || size.getStrValue() == "12T")) {
-		roundDepthBottom = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)84).toCSG()
-		roundDepthTop = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)84).toCSG().movez(height - height/4)
-	}
-	
 	CSG round = new Cylinder(diameter/2, diameter/2, height, (int)84).toCSG()
-
-	round = round.difference(roundDepthBottom).difference(roundDepthTop)
+	
+	if (!(size.getStrValue() == "HS12T" || size.getStrValue() == "12T")) {
+		CSG roundDepthBottom = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)84).toCSG()
+		CSG roundDepthTop = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)84).toCSG().movez(height - height/4)
+		
+		round = round.difference(roundDepthBottom).difference(roundDepthTop)
+	}
 
 	CSG tooth = new Cube(toothLen, toothLen, height).toCSG().movez(height/2)
 	tooth = tooth.difference(new Cube(7, 8, height).toCSG().rotz(-20).movex(-5).movez(height/2)).difference(new Cube(7, 8, height).toCSG().rotz(20).movex(5).movez(height/2)).movey(-diameter/2)
@@ -39,7 +37,7 @@ CSG getGear() {
 	for (int i = 0; i < numTeeth; i++) {
 		round = round.union(tooth.clone().rotz(360/numTeeth*i))
 	}
-	round = round.movey(20)
+	round = round.movey(diameter)
 	round = round.setColor(javafx.scene.paint.Color.GREEN)
 	
 	return round
