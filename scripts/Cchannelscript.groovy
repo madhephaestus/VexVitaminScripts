@@ -26,6 +26,11 @@ CSG getSheet(){
 			).toCSG()// this converts from the geometry to an object we can work with
 	
 	CSG midhole = new Cube( 4.7,4.7,thickness*2).toCSG()
+
+	CSG sidething = new Cube (thickness, side , side).toCSG()
+	CSG sideHole = new Cube (thickness *2, 4.7, 4.7).toCSG()
+
+	CSG CChannelSiding = sidething.difference(sideHole)
 	
 			
   	CSG stub = sheet.difference(hole)
@@ -34,31 +39,78 @@ CSG getSheet(){
   	System.out.println(vexSheetConfig.y)
   	if (vexSheetConfig.x != 2)
 	{
-	for (int i=0;i< vexSheetConfig.x;i++){
+	for (int i=-1;i< vexSheetConfig.x + 1;i++){
+			if (i == -1) {
+				for (int j=0;j<vexSheetConfig.y;j++){
+  			outputSheet = outputSheet.union(
+  					CChannelSiding
+  						.movex(i*(side/2))
+  						.movey(j*side)
+  						.movez(side/2))
+			}
+			}
+			else if (i == vexSheetConfig.x) {
+				for (int j=0;j<vexSheetConfig.y;j++){
+  			outputSheet = outputSheet.union(
+  					CChannelSiding
+  						.movex((i*(side/2))+ side*2)
+  						.movey(j*side)
+  						.movez(side/2))
+			}
+			}
+		
+			else {
   		for (int j=0;j<vexSheetConfig.y;j++){
   			outputSheet = outputSheet.union(
   					stub
   						.movex(i*side)
   						.movey(j*side)
+
+  		
   					
   				)
   		}
-  	}
+			}
+		}
 	}
 	else
 	{
-		for (int i=0;i< vexSheetConfig.x;i++){
+		System.out.println("cool")
+		for (int i=-1;i< vexSheetConfig.x + 1;i++){
+			if (i == -1) {
+				for (int j=0;j<vexSheetConfig.y;j++){
+  			outputSheet = outputSheet.union(
+  					CChannelSiding
+  						.movex(i*(side/2))
+  						.movey(j*side)
+  						.movez(side/2))
+			}
+			}
+			else if (i == vexSheetConfig.x) {
+				for (int j=0;j<vexSheetConfig.y;j++){
+  			outputSheet = outputSheet.union(
+  					CChannelSiding
+  						.movex((i*(side/2))+ side/2)
+  						.movey(j*side)
+  						.movez(side/2))
+			}
+			}
+		
+			else {
   		for (int j=0;j<vexSheetConfig.y;j++){
   			outputSheet = outputSheet.union(
   					stub
   						.movex(i*side)
   						.movey(j*side)
+
+  		
   					
   				)
+  		}
 			}
 		}
-		for (int x=0;x<vexSheetConfig.y;x++){	
-			outputSheet = outputSheet.difference(midhole.movey(1.54*x))
+		for (int x=0;x<vexSheetConfig.y-1;x++){	
+			outputSheet = outputSheet.difference(midhole.movey(12.5*x+ 6.0).movex(6.0))
 		}
 	}
 	
