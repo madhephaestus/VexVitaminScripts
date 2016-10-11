@@ -34,8 +34,9 @@ CSG getWheel(){
       	tempBody = tempBody.difference(subtractSphere)
       	mainBody = mainBody.difference(tempBody.movex(-vexWheelConfig.diameter))
       }
-     CSG subtractCube = new Cube(5,
-     					   5,
+     double axleWidth = 5
+     CSG subtractCube = new Cube(axleWidth,
+     					   axleWidth,
      					   vexWheelConfig.totalHeight)
      					   .toCSG()
 
