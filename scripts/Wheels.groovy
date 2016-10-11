@@ -24,17 +24,21 @@ CSG getWheel(){
       //does this is the wheel is "round" at the edge
       if(roundEdge){
       	CSG tempBody = mainBody.movex(vexWheelConfig.diameter)
-      	CSG subtractSphere = new Sphere((vexWheelConfig.diameter)/2)
+      	CSG subtractSphere = new Sphere((vexWheelConfig.diameter)/2-1)
       								.toCSG()
-      	subtractSphere = subtractSphere.rotx(90)
+      	CSG tempSphere = subtractSphere.rotx(90)
       							 .movex(vexWheelConfig.diameter)
       							 .movez(vexWheelConfig.totalHeight/2)
-      	tempBody = tempBody.difference(subtractSphere)
-      	
-      	tempBody = tempBody.difference(subtractSphere)
+      	tempBody = tempBody.difference(tempSphere)
+
+      	tempSphere = subtractSphere.rotx(90)
+      						  .rotz(10)
+      					       .movex(vexWheelConfig.diameter)
+      					       .movez(vexWheelConfig.totalHeight/2)
+      	tempBody = tempBody.difference(tempSphere)
       	mainBody = mainBody.difference(tempBody.movex(-vexWheelConfig.diameter))
       }
-     double axleWidth = 5
+     double axleWidth = 3.6
      CSG subtractCube = new Cube(axleWidth,
      					   axleWidth,
      					   vexWheelConfig.totalHeight)
