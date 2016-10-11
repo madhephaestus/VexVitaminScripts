@@ -32,7 +32,7 @@ CSG getSheet(){
   	CSG outputSheet = stub.clone()
   	System.out.println("Sucess")
   	System.out.println(vexSheetConfig.y)
-  	/*if (vexSheetConfig.x != 2)
+  	if (vexSheetConfig.x != 2)
 	{
 	for (int i=0;i< vexSheetConfig.x;i++){
   		for (int j=0;j<vexSheetConfig.y;j++){
@@ -61,8 +61,8 @@ CSG getSheet(){
 			outputSheet = outputSheet.difference(midhole.movey(1.54*x))
 		}
 	}
-	*/
-	for (int i=0;i< vexSheetConfig.x;i++){
+	
+	/*for (int i=0;i< vexSheetConfig.x;i++){
 
 		
 		
@@ -81,7 +81,7 @@ CSG getSheet(){
   		}
 	}
 
-  
+  */
 			
   	//outputSheet = outputSheet.union(new Cube(side).toCSG())
 	return outputSheet
