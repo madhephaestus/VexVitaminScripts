@@ -35,7 +35,7 @@ CSG getGear() {
 	round = round.union(axleCylinder).difference(axleHole)
 	
 	for (int i = 0; i < numTeeth; i++) {
-		round = round.union(tooth.clone().rotz(360/numTeeth*i))
+		round = round.union(tooth.rotz(360/numTeeth*i))
 	}
 	round = round.movey(diameter)
 	round = round.setColor(javafx.scene.paint.Color.GREEN)
