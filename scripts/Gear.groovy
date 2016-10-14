@@ -37,7 +37,7 @@ CSG getGear() {
 	for (int i = 0; i < numTeeth; i++) {
 		round = round.union(tooth.rotz(360/numTeeth*i))
 	}
-	round = round.movey(diameter)
+	//round = round.movey(diameter)
 	round = round.setColor(javafx.scene.paint.Color.GREEN)
 	
 	return round
