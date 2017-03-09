@@ -41,8 +41,8 @@ CSG getGear() {
 	round = round.union(tooth)
 
 	CSG axleHole = new Cube(3.175, 3.175, height).toCSG().movez(height/2)
-	CSG axleCylinder = new Cylinder(4, 4, height, (int)30).toCSG()
-	round = round.union(axleCylinder).difference(axleHole)
+	//CSG axleCylinder = new Cylinder(4, 4, height, (int)30).toCSG()
+	round = round.difference(axleHole)
 	
 	for (int i = 0; i < numTeeth; i++) {
 		round = round.union(tooth.rotz(360/numTeeth*i))
