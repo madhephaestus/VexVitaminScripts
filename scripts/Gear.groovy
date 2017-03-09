@@ -18,14 +18,14 @@ CSG getGear() {
 	double toothLen = vexGearConfig.toothLen
 
 	CSG round = new Cylinder(diameter/2, diameter/2, height, (int)30).toCSG()
-	
+	/*
 	if (!(size.getStrValue() == "HS12T" || size.getStrValue() == "12T")) {
 		CSG roundDepthBottom = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)30).toCSG()
 		CSG roundDepthTop = new Cylinder(3*diameter/7, 3*diameter/7, height/4, (int)30).toCSG().movez(height - height/4)
 		
 		round = round.difference(roundDepthBottom).difference(roundDepthTop)
 	}
-
+	*/
 	CSG tooth = new Cube(toothLen, toothLen, height).toCSG().movez(height/2)
 	tooth = tooth.difference(new Cube(7, 8, height)
 				 .toCSG()
