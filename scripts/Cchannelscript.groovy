@@ -35,8 +35,8 @@ CSG getSheet(){
 			
   	CSG stub = sheet.difference(hole)
   	CSG outputSheet = stub.clone()
-  	System.out.println("Sucess")
-  	System.out.println(vexSheetConfig.y)
+  	//System.out.println("Sucess")
+  	//System.out.println(vexSheetConfig.y)
   	if (vexSheetConfig.x != 2)
 	{
 	for (int i=-1;i< vexSheetConfig.x + 1;i++){
@@ -75,7 +75,7 @@ CSG getSheet(){
 	}
 	else
 	{
-		System.out.println("cool")
+		//System.out.println("cool")
 		for (int i=-1;i< vexSheetConfig.x + 1;i++){
 			if (i == -1) {
 				for (int j=0;j<vexSheetConfig.y;j++){
