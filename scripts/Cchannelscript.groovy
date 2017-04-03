@@ -11,7 +11,7 @@ CSG getSheet(){
 	//println "Database loaded "+database
 	HashMap<String,Object> vexSheetConfig = Vitamins.getConfiguration( type,size.getStrValue())
 
-	double thickness = 0.8
+	double thickness = 1.6
 	double side = 12.5
 
   
