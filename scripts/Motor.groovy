@@ -16,8 +16,21 @@ CSG getMotor() {
 	double sizeZ = vexMotorConfig.sizeZ;
 	double axleInset = vexMotorConfig.axleInset;
 	double postInset = vexMotorConfig.postInset;
+	double postDiamBottom = vexMotorConfig.postDiamBottom
+	double postDiamTop = vexMotorConfig.postDiamTop
 
 	CSG motor = new Cube(sizeX, sizeY, sizeZ).toCSG();
+	
+	CSG post = new Cylinder(postDiamTop/2, postDiamBottom/2, 14.8, 80).toCSG();
+	post = post.union(post.movey(13));
+	post = post.movez(motor.getMaxZ());
+	post = post.hull();
+	
+	CSG axle = new Cylinder(7.2/2, 7.2/2, 50.8, 80).toCSG();
+	axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(motor.getMaxZ());
+	
+	motor = motor.union(post);
+	motor = motor.union(axle);
 	
 	return motor
 		.setParameter(size)
