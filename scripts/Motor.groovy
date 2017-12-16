@@ -25,6 +25,7 @@ CSG getMotor() {
 	post = post.union(post.movey(13));
 	post = post.movez(motor.getMaxZ());
 	post = post.hull();
+	post = post.movey(motor.getMaxY() - post.getMaxY()).movey(-postInset);
 	
 	CSG axle = new Cylinder(7.2/2, 7.2/2, 50.8, 80).toCSG();
 	axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(motor.getMaxZ());
