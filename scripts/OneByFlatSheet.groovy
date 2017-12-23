@@ -14,7 +14,7 @@ CSG getFlat() {
 
     double thickness = vexConfig.thickness
     double holeWidth = 4.6609;
-    double holeXInset = 4.1, holeYInset = 3.3;
+    double holeXInset = 3.3, holeYInset = 3.3;
     double pitch = 12.7;
     
     int holeCountLength = (int) vexConfig.holeCountLength
