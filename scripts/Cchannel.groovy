@@ -1,13 +1,13 @@
 import com.neuronrobotics.bowlerstudio.vitamins.Vitamins;
 import eu.mihosoft.vrl.v3d.parametrics.*;
 
-CSG getFlat(int hcl) {
+CSG getFlat() {
     double thickness = 1.6002; //aluminum, steel is 1.1684
     double holeWidth = 4.6609;
     double holeXInset = 4.1, holeYInset = 3.3;
     double pitch = 12.7;
     
-    int holeCountLength = hcl, holeCountWidth = 1;
+    int holeCountLength = 5, holeCountWidth = 1;
     
     CSG plate = new Cube(holeCountLength * pitch, holeCountWidth * pitch - thickness, thickness).toCSG();
     plate = plate.movex(-plate.getMinX()).movey(-plate.getMinY()).movez(-plate.getMinZ());
@@ -41,23 +41,12 @@ CSG getFlat(int hcl) {
 }
 
 CSG getCChannel() {
-    String type = "vexCchannel"
-    if (args==null) {
-    	args=["Steel 2x5"]
-    }
-    StringParameter size = new StringParameter(type + " Default",
-    									args.get(0),
-    									Vitamins.listVitaminSizes(type))
-    									
-    HashMap<String,Object> vexConfig = Vitamins.getConfiguration(type, size.getStrValue())
-
-    double thickness = vexConfig.thickness
+    double thickness = 1.6002; //aluminum, steel is 1.1684
     double holeWidth = 4.6609, holeThinGap = 1.6764;
     double holeXInset = 4.1, holeYInset = 3.3;
     double pitch = 12.7;
     
-    int holeCountLength = (int) vexConfig.holeCountLength
-    int holeCountWidth = (int) vexConfig.holeCountWidth
+    int holeCountLength = 5, holeCountWidth = 2;
     
     CSG plate = new Cube(holeCountLength * pitch, holeCountWidth * pitch - thickness, thickness).toCSG();
     plate = plate.movex(-plate.getMinX()).movey(-plate.getMinY()).movez(-plate.getMinZ());
@@ -91,7 +80,7 @@ CSG getCChannel() {
     
     plate = plate.difference(holeSet);
     
-    CSG side = getFlat(holeCountLength).rotx(-90).movez(thickness);
+    CSG side = getFlat().rotx(-90).movez(thickness);
     plate = plate.union(side).union(side.movey(plate.getTotalY() + side.getTotalY()));
     
     //Center corner at (0, 0)
