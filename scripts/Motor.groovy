@@ -9,7 +9,7 @@ CSG getMotor() {
 	
 	StringParameter size = new StringParameter(type + " Default", args.get(0), Vitamins.listVitaminSizes(type))
 										
-	Map<String, Object> vexMotorConfig = Vitamins.getConfiguration("vexMotor", size.getStrValue())
+	Map<String, Object> vexMotorConfig = Vitamins.getConfiguration(type, size.getStrValue())
 
 	double sizeX = vexMotorConfig.sizeX;
 	double sizeY = vexMotorConfig.sizeY;
