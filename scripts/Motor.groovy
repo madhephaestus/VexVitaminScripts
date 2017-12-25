@@ -27,17 +27,18 @@ CSG getMotor() {
 	post = post.hull();
 	post = post.movey(motor.getMaxY() - post.getMaxY()).movey(-postInset);
 	
-        LengthParameter axleLength = new LengthParameter("Axle Length", 50.8, [10, 152.4]);
-        CSG axle = new Cylinder(7.2/2, 7.2/2, axleLength.getMM(), 80).toCSG();
-        axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(motor.getMaxZ());
+    LengthParameter axleLength = new LengthParameter("Axle Length", 50.8, [10, 152.4]);
+    CSG axle = new Cylinder(7.2/2, 7.2/2, axleLength.getMM(), 80).toCSG();
+    axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(motor.getMaxZ());
 
-        motor = motor.union(post);
-        motor = motor.union(axle);
+    motor = motor.union(post);
+    motor = motor.union(axle);
+    motor = motor.movey(-axle.getCenterY())
 
-        return motor
-                .setParameter(size)
-                .setParameter(axleLength)
-                .setRegenerate({getMotor()})
+    return motor
+	    .setParameter(size)
+	    .setParameter(axleLength)
+	    .setRegenerate({getMotor()})
 }
 
 return getMotor()
