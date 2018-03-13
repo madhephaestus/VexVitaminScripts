@@ -49,6 +49,10 @@ CSG getFlat() {
     
     //Center corner at (0, 0)
     plate = plate.movey(-plate.getMinY());
+    plate.setParameter(size);
+    plate.setRegenerate({
+    	return getFlat()
+    })
 }
 
 return getFlat()
