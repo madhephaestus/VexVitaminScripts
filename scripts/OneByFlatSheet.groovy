@@ -48,11 +48,14 @@ CSG getFlat() {
     plate = plate.difference(holeSet);
     
     //Center corner at (0, 0)
-    plate = plate.movey(-plate.getMinY());
+    plate = plate.movey(-plate.getMinY())
+    				.movex(-holeXInset-holeWidth/2)
+    				.movey(-holeYInset-holeWidth/2)
     plate.setParameter(size);
     plate.setRegenerate({
     	return getFlat()
     })
+    return plate
 }
 
 return getFlat()
