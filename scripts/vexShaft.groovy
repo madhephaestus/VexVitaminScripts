@@ -12,7 +12,7 @@ CSG getStandoff(){
                     
 	HashMap<String, Object> vexStandoffConfig = Vitamins.getConfiguration(type, size.getStrValue())
 	double length = vexStandoffConfig.length
-	double width = (1.0/4.0)*25.4
+	double width = (1.0/8.0)*25.4
   
   CSG standoff = new Cube(width, width, length).toCSG().toZMin()
 
