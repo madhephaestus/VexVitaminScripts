@@ -39,6 +39,7 @@ CSG getMotor() {
     			.toZMax()
     motor = motor.union([axle,bolt1,bolt2]);
     motor = motor.movey(-axle.getCenterY())
+    			.rotz(180)
 
     return motor
 	    .setParameter(size)
