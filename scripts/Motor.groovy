@@ -21,14 +21,14 @@ CSG getMotor() {
 
 	CSG motor = new Cube(sizeX, sizeY, sizeZ).toCSG();
 	
-	CSG post = new Cylinder(postDiamTop/2, postDiamBottom/2, 14.8, 80).toCSG();
+	CSG post = new Cylinder(postDiamTop/2, postDiamBottom/2, 14.8, 30).toCSG();
 	post = post.union(post.movey(13));
 	post = post.movez(motor.getMaxZ());
 	post = post.hull();
 	post = post.movey(motor.getMaxY() - post.getMaxY()).movey(-postInset);
 	
     LengthParameter axleLength = new LengthParameter("Axle Length", 50.8, [10, 152.4]);
-    CSG axle = new Cylinder(7.2/2, 7.2/2, axleLength.getMM(), 80).toCSG();
+    CSG axle = new Cylinder(7.2/2, 7.2/2, axleLength.getMM(), 30).toCSG();
     axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(-motor.getMaxZ());
     def grid =(1.0/2.0)*25.4
     def bolt = Vitamins.get("capScrew","6#32")
@@ -37,10 +37,14 @@ CSG getMotor() {
     def bolt2 = bolt.movey(grid*2+motor.getMinY() + axle.getTotalY()/2 + axleInset)
     motor = motor.union(post)
     			.toZMax()
+    CSG shaftBox = axle.getBoundingBox()
+    					.toZMin()
+					.movez(	bolt2.getMaxZ())
+	axle=axle.difference(	shaftBox)
     motor = motor.union([axle,bolt1,bolt2]);
     motor = motor.movey(-axle.getCenterY())
     			.rotz(180)
-
+    
     return motor
 	    .setParameter(size)
 	    .setParameter(axleLength)
