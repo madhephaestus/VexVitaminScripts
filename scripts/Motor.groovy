@@ -31,6 +31,8 @@ CSG getMotor() {
     CSG axle = new Cylinder(7.2/2, 7.2/2, axleLength.getMM(), 30).toCSG();
     axle = axle.movey(motor.getMinY() + axle.getTotalY()/2 + axleInset).movez(-motor.getMaxZ());
     def grid =(1.0/2.0)*25.4
+    	LengthParameter boltLength		= new LengthParameter("Bolt Length",10,[180,10])
+    	boltLength.setMM(10)
     def bolt = Vitamins.get("capScrew","6#32")
     				.toZMin()
     def bolt1 = bolt.movey(grid+motor.getMinY() + axle.getTotalY()/2 + axleInset)
@@ -44,7 +46,7 @@ CSG getMotor() {
     motor = motor.union([axle,bolt1,bolt2]);
     motor = motor.movey(-axle.getCenterY())
     			.rotz(180)
-    
+    println "Generating "+type+" size "+args.get(0)+" maxZ "+motor.getMaxZ()
     return motor
 	    .setParameter(size)
 	    .setParameter(axleLength)
